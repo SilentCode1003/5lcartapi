@@ -27,7 +27,7 @@
       <span>Dashboard</span></a
     >
   </li>
-  <% if (roletype === 'Admin') { %>
+
   <!-- Divider -->
   <hr class="sidebar-divider" />
 
@@ -113,48 +113,6 @@
       </div>
     </div>
   </li>
-
-  <% } %> <% if (roletype === 'Admin' || roletype === 'User' && department ===
-  'Cabling') { %>
-  <!-- Divider -->
-  <hr class="sidebar-divider" />
-
-  <!-- Heading -->
-  <div class="sidebar-heading">Cabling Inventory</div>
-
-  <!-- Nav Item - Cabling Reports Collapse Menu -->
-  <li class="nav-item">
-    <a
-      class="nav-link collapsed"
-      href="#"
-      data-toggle="collapse"
-      data-target="#collapseCablingReports"
-      aria-expanded="true"
-      aria-controls="collapseCablingReports"
-    >
-      <i class="fa fa-chart-bar" aria-hidden="true"></i>
-      <span>Reports</span>
-    </a>
-    <div
-      id="collapseCablingReports"
-      class="collapse"
-      aria-labelledby="headingUtilities"
-      data-parent="#accordionSidebar"
-    >
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Options:</h6>
-        <a class="collapse-item" href="/reportmaterials">
-          <i class="fa fa-hammer" aria-hidden="true"></i>
-          <span>Materials</span>
-        </a>
-        <a class="collapse-item" href="/reportpurchaseorder">
-          <i class="fa fa-receipt" aria-hidden="true"></i>
-          <span>Purchase Order</span>
-        </a>
-      </div>
-    </div>
-  </li>
-  <% } %>
 
   <!-- Divider -->
   <hr class="sidebar-divider" />

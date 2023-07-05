@@ -1,10 +1,10 @@
 :root {
-  --clr-base: #700b12;
-  --clr-top: #911f27;
-  --clr-btn: #dd5353;
-  --clr-default: #eb1c23;
+  --clr-base: #3a0b70;
+  --clr-top: #471f91;
+  --clr-btn: #5c53dd;
+  --clr-default: #1cebe1;
   --clr-white: #fff;
-  --clr-bg-table: #ff6459;
+  --clr-bg-table: #59fff1;
 }
 
 .bg-gradient-primary {
