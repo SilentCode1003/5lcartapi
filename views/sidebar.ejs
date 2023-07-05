@@ -27,98 +27,51 @@
       <span>Dashboard</span></a
     >
   </li>
-
-  <!-- Divider -->
-  <hr class="sidebar-divider" />
-
-  <!-- Heading -->
-  <div class="sidebar-heading">Control Panel</div>
-
-  <!-- Nav Item - PCreated bys Collapse Menu -->
-
-  <!-- Nav Item - Admin Control Panel Collapse Menu -->
-
-  <li class="nav-item">
-    <a
-      class="nav-link collapsed"
-      href="#"
-      data-toggle="collapse"
-      data-target="#collapseAdminControlPanel"
-      aria-expanded="true"
-      aria-controls="collapseAdminControlPanel"
-    >
-      <i class="fas fa-fw fa-database"></i>
-      <span>Masters</span>
-    </a>
-    <div
-      id="collapseAdminControlPanel"
-      class="collapse"
-      aria-labelledby="headingUtilities"
-      data-parent="#accordionSidebar"
-    >
-      <div class="bg-white py-2 collapse-inner rounded">
-        <h6 class="collapse-header">Master type:</h6>
-        <a class="collapse-item" href="/roletype">
-          <i class="fa fa-users" aria-hidden="true"></i>
-          <span> Roles</span>
-        </a>
-        <a class="collapse-item" href="/position">
-          <i class="fa fa-street-view" aria-hidden="true"></i>
-          <span>Position</span>
-        </a>
-        <a class="collapse-item" href="/department">
-          <i class="fas fa-fw fa-sitemap"></i>
-          <span>Department</span>
-        </a>
-        <a class="collapse-item" href="/accesstype">
-          <i class="fa fa-key" aria-hidden="true"></i>
-          <span>Access</span>
-        </a>
-        <a class="collapse-item" href="/employee">
-          <i class="fa fa-address-card" aria-hidden="true"></i>
-          <span>Employee</span>
-        </a>
-        <h6 class="collapse-header">Client:</h6>
-        <a class="collapse-item" href="/store">
-          <i class="fa fa-address-card" aria-hidden="true"></i>
-          <span>Store</span>
-        </a>
-      </div>
-    </div>
-  </li>
-
-  <li class="nav-item">
-    <a
-      class="nav-link collapsed"
-      href="#"
-      data-toggle="collapse"
-      data-target="#collapseUtilities2"
-      aria-expanded="true"
-      aria-controls="collapseUtilities"
-    >
-      <i class="fa fa-user-cog" aria-hidden="true"></i>
-      <span>Authentication</span>
-    </a>
-    <div
-      id="collapseUtilities2"
-      class="collapse"
-      aria-labelledby="headingUtilities"
-      data-parent="#accordionSidebar"
-    >
-      <div class="bg-white py-2 collapse-inner rounded">
-        <a class="collapse-item" href="/users">
-          <i class="fa fa-calendar" aria-hidden="true"></i>
-          <span>User</span>
-        </a>
-      </div>
-    </div>
-  </li>
-
+  
   <!-- Divider -->
   <hr class="sidebar-divider" />
 
   <!-- Heading -->
   <div class="sidebar-heading">Product Management</div>
+
+  <!-- Nav Item - Product Management Collapse Menu -->
+  <li class="nav-item">
+    <a
+      class="nav-link collapsed"
+      href="#"
+      data-toggle="collapse"
+      data-target="#collapseProductManagement"
+      aria-expanded="true"
+      aria-controls="collapseProductManagement"
+    >
+      <i class="fas fa-fw fa-boxes"></i>
+      <span>Products</span>
+    </a>
+    <div
+      id="collapseProductManagement"
+      class="collapse"
+      aria-labelledby="headingUtilities"
+      data-parent="#accordionSidebar"
+    >
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Master:</h6>
+        <a class="collapse-item" href="/categories">
+          <i class="fas fa-fw fa-layer-group"></i>
+          <span>Categories</span>
+        </a>
+
+        <h6 class="collapse-header">Product Information:</h6>
+        <a class="collapse-item" href="/items">
+          <i class="fa fa-box" aria-hidden="true"></i>
+          <span>Items</span>
+        </a>
+        <a class="collapse-item" href="/itemprice">
+          <i class="fa fa-tag" aria-hidden="true"></i>
+          <span>Item Price</span>
+        </a>
+      </div>
+    </div>
+  </li>
 
   <!-- Divider -->
   <hr class="sidebar-divider" />
