@@ -1,0 +1,229 @@
+<ul
+  class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion"
+  id="accordionSidebar"
+>
+  <!-- Sidebar - Brand -->
+  <a
+    class="sidebar-brand d-flex align-items-center justify-content-center"
+    href="#"
+  >
+    <div class="sidebar-brand-icon">
+      <img
+        src="/images/img/logo.jpg"
+        class="img-fluid"
+        alt="Responsive image"
+      />
+    </div>
+    <div class="sidebar-brand-text mx-3">5L Cart</div>
+  </a>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider my-0" />
+
+  <!-- Nav Item - Dashboard -->
+  <li class="nav-item active">
+    <a class="nav-link" href="/">
+      <i class="fas fa-fw fa-tachometer-alt"></i>
+      <span>Dashboard</span></a
+    >
+  </li>
+  <% if (roletype === 'Admin') { %>
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Control Panel</div>
+
+  <!-- Nav Item - PCreated bys Collapse Menu -->
+
+  <!-- Nav Item - Admin Control Panel Collapse Menu -->
+
+  <li class="nav-item">
+    <a
+      class="nav-link collapsed"
+      href="#"
+      data-toggle="collapse"
+      data-target="#collapseAdminControlPanel"
+      aria-expanded="true"
+      aria-controls="collapseAdminControlPanel"
+    >
+      <i class="fas fa-fw fa-database"></i>
+      <span>Masters</span>
+    </a>
+    <div
+      id="collapseAdminControlPanel"
+      class="collapse"
+      aria-labelledby="headingUtilities"
+      data-parent="#accordionSidebar"
+    >
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Master type:</h6>
+        <a class="collapse-item" href="/roletype">
+          <i class="fa fa-users" aria-hidden="true"></i>
+          <span> Roles</span>
+        </a>
+        <a class="collapse-item" href="/position">
+          <i class="fa fa-street-view" aria-hidden="true"></i>
+          <span>Position</span>
+        </a>
+        <a class="collapse-item" href="/department">
+          <i class="fas fa-fw fa-sitemap"></i>
+          <span>Department</span>
+        </a>
+        <a class="collapse-item" href="/accesstype">
+          <i class="fa fa-key" aria-hidden="true"></i>
+          <span>Access</span>
+        </a>
+        <a class="collapse-item" href="/employee">
+          <i class="fa fa-address-card" aria-hidden="true"></i>
+          <span>Employee</span>
+        </a>
+        <h6 class="collapse-header">Client:</h6>
+        <a class="collapse-item" href="/store">
+          <i class="fa fa-address-card" aria-hidden="true"></i>
+          <span>Store</span>
+        </a>
+      </div>
+    </div>
+  </li>
+
+  <li class="nav-item">
+    <a
+      class="nav-link collapsed"
+      href="#"
+      data-toggle="collapse"
+      data-target="#collapseUtilities2"
+      aria-expanded="true"
+      aria-controls="collapseUtilities"
+    >
+      <i class="fa fa-user-cog" aria-hidden="true"></i>
+      <span>Authentication</span>
+    </a>
+    <div
+      id="collapseUtilities2"
+      class="collapse"
+      aria-labelledby="headingUtilities"
+      data-parent="#accordionSidebar"
+    >
+      <div class="bg-white py-2 collapse-inner rounded">
+        <a class="collapse-item" href="/users">
+          <i class="fa fa-calendar" aria-hidden="true"></i>
+          <span>User</span>
+        </a>
+      </div>
+    </div>
+  </li>
+
+  <% } %> <% if (roletype === 'Admin' || roletype === 'User' && department ===
+  'Cabling') { %>
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Cabling Inventory</div>
+
+  <!-- Nav Item - Cabling Reports Collapse Menu -->
+  <li class="nav-item">
+    <a
+      class="nav-link collapsed"
+      href="#"
+      data-toggle="collapse"
+      data-target="#collapseCablingReports"
+      aria-expanded="true"
+      aria-controls="collapseCablingReports"
+    >
+      <i class="fa fa-chart-bar" aria-hidden="true"></i>
+      <span>Reports</span>
+    </a>
+    <div
+      id="collapseCablingReports"
+      class="collapse"
+      aria-labelledby="headingUtilities"
+      data-parent="#accordionSidebar"
+    >
+      <div class="bg-white py-2 collapse-inner rounded">
+        <h6 class="collapse-header">Options:</h6>
+        <a class="collapse-item" href="/reportmaterials">
+          <i class="fa fa-hammer" aria-hidden="true"></i>
+          <span>Materials</span>
+        </a>
+        <a class="collapse-item" href="/reportpurchaseorder">
+          <i class="fa fa-receipt" aria-hidden="true"></i>
+          <span>Purchase Order</span>
+        </a>
+      </div>
+    </div>
+  </li>
+  <% } %>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Product Management</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Order Management</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Customer Management</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Inventory Management</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Sales and Revenue Reports</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Coupons and Discounts</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Shipping and Tax Settings</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Content Management</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">User Roles and Permissions</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Security</div>
+
+  <!-- Divider -->
+  <hr class="sidebar-divider" />
+
+  <!-- Heading -->
+  <div class="sidebar-heading">Settings and Configuration</div>
+
+  <!-- Sidebar Toggler (Sidebar) -->
+  <div class="text-center d-none d-md-inline">
+    <button class="rounded-circle border-0" id="sidebarToggle"></button>
+  </div>
+</ul>
