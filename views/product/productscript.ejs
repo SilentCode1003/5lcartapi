@@ -1,0 +1,257 @@
+<script>
+  $(document).ready(function () {
+    let productcode = "";
+    let status = "";
+
+    LoadTable();
+    LoadList();
+
+    $("#product-dataTable tbody").on("click", "tr", function () {
+      var dataRow = [];
+      $(this)
+        .closest("tr")
+        .find("td")
+        .each(function () {
+          dataRow.push($(this).text());
+        });
+      console.log(dataRow);
+      productcode = dataRow[0];
+      status = dataRow[4];
+    });
+
+    $(document).on("click", "#editBtn", function () {
+      $("#productcodemodal").val(productcode);
+      $("#productModal").modal("show");
+      console.log(productcode);
+    });
+
+    $(document).on("click", "#addBtn", function () {
+      let productname = $("#productname").val();
+      let stock = $("#stock").val();
+      let category = $("#categorylist").val();
+      let productdescription = $("#productdescription").val();
+
+      var message = "";
+
+      if (productname == "") {
+        message += "Product Name ";
+      }
+
+      if (stock == "") {
+        message += "Stock ";
+      }
+
+      if (category == "") {
+        message += "Category ";
+      }
+
+      if (productdescription == "") {
+        message += "Product Description ";
+      }
+      if (message != "") {
+        warning("Required", `Please fill up ${message}`);
+      } else {
+        $.ajax({
+          type: "POST",
+          url: "/product/save",
+          data: {
+            productname: productname,
+            stock: stock,
+            category: category,
+            productdescription: productdescription,
+          },
+          success: function (result) {
+            if (result.msg == "success") {
+              LoadTable();
+              success("Saved", "Successfully");
+            }
+
+            if (result.msg == "exist") {
+              warning("Exist", `${productname} has already registered!`);
+            }
+          },
+          error: function (err) {
+            errormsg(err);
+          },
+        });
+      }
+    });
+
+    //Edit Update
+    $(document).on("click", "#saveBtn", function () {
+      let productnamemodal = $("#productnamemodal").val();
+
+      var message = "";
+
+      if (productnamemodal == "") {
+        message += "product Name ";
+      }
+
+      if (message != "") {
+        warning("Required", `Please fill up ${message}`);
+      } else {
+        $.ajax({
+          type: "POST",
+          url: "/product/edit",
+          data: {
+            productnamemodal: productnamemodal,
+            productcode: productcode,
+          },
+          success: function (result) {
+            if (result.msg == "success") {
+              LoadTable();
+              success("Saved", "Successfully");
+            }
+
+            if (result.msg == "exist") {
+              warning("Exist", `${productnamemodal} already exist!`);
+            }
+          },
+          error: function (err) {
+            errormsg(err);
+          },
+        });
+      }
+    });
+
+    //Status Update
+    $(document).on("click", "#activeBtn", function () {
+      console.log(productcode);
+      console.log(status);
+      $.ajax({
+        type: "POST",
+        url: "/product/status",
+        data: {
+          status: status,
+          productcode: productcode,
+        },
+        success: function (result) {
+          if (result.msg == "success") {
+            LoadTable();
+            success("Saved", "Successfully");
+          }
+
+          if (result.msg == "notexist") {
+            warning(`${productcode} does not exist!`);
+          }
+        },
+        error: function (err) {
+          errormsg(err);
+        },
+      });
+    });
+
+    $(document).on("click", "#inactiveBtn", function () {
+      console.log(productcode);
+      console.log(status);
+      $.ajax({
+        type: "POST",
+        url: "/product/status",
+        data: {
+          status: status,
+          productcode: productcode,
+        },
+        success: function (result) {
+          if (result.msg == "success") {
+            LoadTable();
+            success("Saved", "Successfully");
+          }
+
+          if (result.msg == "notexist") {
+            warning(`${productcode} does not exist!`);
+          }
+        },
+        error: function (err) {
+          errormsg(err);
+        },
+      });
+    });
+
+    function LoadTable() {
+      $("#product-dataTable").DataTable({
+        destroy: true,
+        processing: true,
+        serverSide: true,
+        paging: false,
+        searching: false,
+        info: false,
+        scrollY: 400,
+        scrollCollapse: true,
+        serverMethod: "GET",
+        ajax: {
+          url: "/product/load",
+          dataSrc: (json) => {
+            var finalData = [];
+            var data = json.data;
+
+            console.log(data);
+            $.each(data, (key, item) => {
+              var action = "";
+              var status = item.status;
+
+              if (status == "ACTIVE") {
+                action =
+                  '<button id="editBtn" class="btn btn-outline-primary" name="editBtn" data-toggle="modal" data-target="#productModal">EDIT</button> <button id="inactiveBtn" class="btn btn-outline-primary" name="inactiveBtn">INACTIVE</button>';
+              }
+              if (status == "INACTIVE") {
+                action =
+                  '<button id="editBtn" class="btn btn-outline-primary" name="editBtn" data-toggle="modal" data-target="#productModal">EDIT</button> <button id="activeBtn" class="btn btn-outline-primary" name="activeBtn">ACTIVE</button>';
+              }
+
+              finalData.push({
+                productcode: item.productcode,
+                productname: item.productname,
+                productdescription: item.productdescription,
+                stock: item.stock,
+                status: item.status,
+                createdby: item.createdby,
+                createddate: item.createddate,
+                action: action,
+              });
+            });
+
+            return finalData;
+          },
+        },
+        columnDefs: [
+          {
+            targets: 1,
+            className: "td-indent",
+          },
+        ],
+        columns: [
+          { data: "productcode" },
+          { data: "productname" },
+          { data: "productdescription" },
+          { data: "stock" },
+          { data: "status" },
+          { data: "createdby" },
+          { data: "createddate" },
+          { data: "action" },
+        ],
+        initComplete: function () {},
+      });
+    }
+
+    function LoadList() {
+      $.ajax({
+        type: "GET",
+        url: "/category/load",
+        success: function (result) {
+          var data = result.data;
+
+          $.each(data, function (key, item) {
+            if (item.status == "ACTIVE") {
+              var options = new Option(item.categoryname, item.categoryname);
+              $(options).html(item.categoryname);
+              $("#categorylist").append(options);
+            }
+          });
+        },
+        error: function (err) {
+          errormsg(err);
+        },
+      });
+    }
+  });
+</script>

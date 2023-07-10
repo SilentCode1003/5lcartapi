@@ -3,9 +3,9 @@ exports.MasterProduct = (data) => {
 
   data.forEach((key, item) => {
     dataresult.push({
-      productid: key.mp_productid,
-      name: key.mp_name,
-      description: key.mp_description,
+      productcode: key.mp_productid,
+      productname: key.mp_name,
+      productdescription: key.mp_description,
       stock: key.mp_stock,
       categoryid: key.mp_categoryid,
       status: key.mp_status,
