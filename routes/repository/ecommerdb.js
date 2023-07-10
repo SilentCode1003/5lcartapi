@@ -1,5 +1,5 @@
 const mysql = require("mysql");
-const model = require("../model/ecommercedb");
+const model = require("../model/ecommercemodel");
 require("dotenv").config();
 const crypt = require("./cryptography");
 
