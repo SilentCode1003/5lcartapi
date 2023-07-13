@@ -83,6 +83,10 @@ exports.Select = (sql, table, callback) => {
       if (table == "MasterProductImage") {
         callback(null, model.MasterProductImage(results));
       }
+
+      if (table == "ProductHistory") {
+        callback(null, model.ProductHistory(results));
+      }
     });
   } catch (error) {
     console.log(error);
@@ -229,6 +233,21 @@ exports.InsertTable = (tablename, data, callback) => {
       mpi_status,
       mpi_createdby,
       mpi_createddate) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
+
+  if (tablename == "product_history") {
+    let sql = `INSERT INTO product_history(
+      ph_productid,
+      ph_type,
+      ph_description,
+      ph_datetime) VALUES ?`;
 
     this.Insert(sql, data, (err, result) => {
       if (err) {

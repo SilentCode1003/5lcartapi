@@ -49,3 +49,19 @@ exports.MasterProductImage = (data) => {
 
   return dataresult;
 };
+
+exports.ProductHistory = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      id: key.ph_id,
+      productid: key.ph_productid,
+      type: key.ph_type,
+      description: key.ph_description,
+      datetime: key.ph_datetime,
+    });
+  });
+
+  return dataresult;
+};
