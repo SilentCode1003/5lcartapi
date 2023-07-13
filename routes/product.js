@@ -42,6 +42,7 @@ router.post("/save", (req, res) => {
     let createdby = "DEV42";
     let createddate = helper.GetCurrentDatetime();
     let master_product = [];
+    let product_history = [];
     let sql_check = `select * from master_product where mp_name='${productname}'`;
 
     mysql.isDataExist(sql_check, "MasterProduct").then((result) => {
@@ -59,11 +60,32 @@ router.post("/save", (req, res) => {
           createdby,
           createddate,
         ]);
+
         mysql.InsertTable("master_product", master_product, (err, result) => {
           if (err) console.error("Error: ", err);
 
           console.log(result);
-          res.json({ msg: "success" });
+
+          let sql_productid = `select mp_productid as productid from master_product where mp_name='${productname}'`;
+
+          mysql.SelectResult(sql_productid, (err, result) => {
+            if (err) console.error("Error: ", err);
+            var id = result[0].productid;
+            var description = `Add: ${id} ${productname} ${stock}`;
+
+            product_history.push([id, "Add", description, createddate]);
+
+            mysql.InsertTable(
+              "product_history",
+              product_history,
+              (err, result) => {
+                if (err) console.error("Error: ", err);
+                console.log(result);
+
+                res.json({ msg: "success" });
+              }
+            );
+          });
         });
       }
     });
@@ -120,19 +142,29 @@ router.post("/status", (req, res) => {
       req.body.status == dictionary.GetValue(dictionary.ACT())
         ? dictionary.GetValue(dictionary.INACT())
         : dictionary.GetValue(dictionary.ACT());
+    let createddate = helper.GetCurrentDatetime();
     let data = [status, productcode];
+    let product_history = [];
+    let description = `Update: ${productcode} status change to ${status}`;
 
     let sql_Update = `UPDATE master_product 
                      SET mp_status = ?
                      WHERE mp_productid = ?`;
+
+    product_history.push([productcode, "Update", description, createddate]);
 
     console.log(data);
 
     mysql.UpdateMultiple(sql_Update, data, (err, result) => {
       if (err) console.error("Error: ", err);
 
-      res.json({
-        msg: "success",
+      mysql.InsertTable("product_history", product_history, (err, result) => {
+        if (err) console.error("Error: ", err);
+        console.log(result);
+
+        res.json({
+          msg: "success",
+        });
       });
     });
   } catch (error) {
