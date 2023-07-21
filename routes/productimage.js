@@ -88,6 +88,7 @@ router.post("/save", (req, res) => {
 }); // not yet
 
 router.post("/edit", (req, res) => {
+  //need to set
   try {
     let productnamemodal = req.body.productnamemodal;
     let productcode = req.body.productcode;
@@ -141,8 +142,8 @@ router.post("/status", (req, res) => {
     let description = `Update: ${productcode} status change to ${status}`;
 
     let sql_Update = `UPDATE master_product_image 
-                     SET mp_status = ?
-                     WHERE mp_productid = ?`;
+                     SET mpi_status = ?
+                     WHERE mpi_imageid = ?`;
 
     product_history.push([productcode, "Update", description, createddate]);
 

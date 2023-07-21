@@ -17,7 +17,7 @@
         });
       console.log(dataRow);
       productcode = dataRow[0];
-      status = dataRow[4];
+      status = dataRow[3];
     });
 
     $(document).on("click", "#editBtn", function () {
@@ -110,7 +110,7 @@
       console.log(status);
       $.ajax({
         type: "POST",
-        url: "/product/status",
+        url: "/productimage/status",
         data: {
           status: status,
           productcode: productcode,
@@ -136,7 +136,7 @@
       console.log(status);
       $.ajax({
         type: "POST",
-        url: "/product/status",
+        url: "/productimage/status",
         data: {
           status: status,
           productcode: productcode,
