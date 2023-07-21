@@ -92,7 +92,7 @@ router.post("/save", (req, res) => {
   } catch (error) {
     res.json({ msg: error });
   }
-}); // not yet
+});
 
 router.post("/edit", (req, res) => {
   try {
@@ -165,6 +165,94 @@ router.post("/status", (req, res) => {
         res.json({
           msg: "success",
         });
+      });
+    });
+  } catch (error) {
+    res.json({
+      msg: error,
+    });
+  }
+});
+
+router.post("/getproduct", (req, res) => {
+  try {
+    let productid = req.body.productid;
+    let sql = `select 
+    mp_productid as productid,
+    mp_categoryid as categoyid,
+    mp_name as name,
+    mp_description as description,
+    mp_stock as stock,
+    mpi_image as image 
+    from master_product as mp
+    inner join master_product_image as mpi on mp_productid = mpi_productid
+    where mp_productid = '${productid}'
+    order by mp_productid`;
+
+    mysql.SelectResult(sql, (err, result) => {
+      if (err) console.error("Error: ", err);
+      var data = [];
+
+      console.log(result);
+
+      result.forEach((key, item) => {
+        data.push({
+          productid: key.productid,
+          categoyid: key.categoyid,
+          name: key.name,
+          description: key.description,
+          stock: key.stock,
+          image: key.image,
+        });
+      });
+
+      res.json({
+        msg: "success",
+        data: data,
+      });
+    });
+  } catch (error) {
+    res.json({
+      msg: error,
+    });
+  }
+});
+
+router.post("/getbycategory", (req, res) => {
+  try {
+    let categoryid = req.body.categoryid;
+    let sql = `select 
+    mp_productid as productid,
+    mp_categoryid as categoyid,
+    mp_name as name,
+    mp_description as description,
+    mp_stock as stock,
+    mpi_image as image 
+    from master_product as mp
+    inner join master_product_image as mpi on mp_productid = mpi_productid
+    where mp_categoryid='${categoryid}'
+    order by mp_productid`;
+
+    mysql.SelectResult(sql, (err, result) => {
+      if (err) console.error("Error: ", err);
+      var data = [];
+
+      console.log(result);
+
+      result.forEach((key, item) => {
+        data.push({
+          productid: key.productid,
+          categoyid: key.categoyid,
+          name: key.name,
+          description: key.description,
+          stock: key.stock,
+          image: key.image,
+        });
+      });
+
+      res.json({
+        msg: "success",
+        data: data,
       });
     });
   } catch (error) {
