@@ -256,6 +256,82 @@ exports.InsertTable = (tablename, data, callback) => {
       callback(null, result);
     });
   }
+
+  if (tablename == "orders") {
+    let sql = `INSERT INTO orders(
+        o_customerid,
+        o_orderdate,
+        o_status,
+        o_totalamount) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
+
+  if (tablename == "order_items") {
+    let sql = `INSERT INTO order_items(
+        oi_orderid,
+        oi_productid,
+        oi_quantity,
+        oi_unitprice,
+        oi_subtotal) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
+
+  if (tablename == "payment") {
+    let sql = `INSERT INTO payment(
+        p_orderid,
+        p_paymentdate,
+        p_paymenttype,
+        p_amount) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
+
+  if (tablename == "customers") {
+    let sql = `INSERT INTO customers(
+        c_customername,
+        c_email,
+        c_address,
+        c_phone) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
+
+  if (tablename == "products") {
+    let sql = `INSERT INTO products(
+        p_productname,
+        p_description,
+        p_unitprice,
+        p_stockqunatity) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
 };
 
 exports.isDataExist = (sql, tablename) => {

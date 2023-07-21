@@ -65,3 +65,84 @@ exports.ProductHistory = (data) => {
 
   return dataresult;
 };
+
+exports.Orders = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      orderid: key.o_orderid,
+      customerid: key.o_customerid,
+      orderdate: key.o_orderdate,
+      status: key.o_status,
+      totalamount: key.o_totalamount,
+    });
+  });
+
+  return dataresult;
+};
+
+exports.OrderItems = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      itemid: key.oi_itemid,
+      orderid: key.oi_orderid,
+      productid: key.oi_productid,
+      quantity: key.oi_quantity,
+      unitprice: key.oi_unitprice,
+      subtotal: key.oi_subtotal,
+    });
+  });
+
+  return dataresult;
+};
+
+exports.Payment = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      paymentid: key.p_paymentid,
+      orderid: key.p_orderid,
+      paymentdate: key.p_paymentdate,
+      paymenttype: key.p_paymenttype,
+      amount: key.p_amount,
+    });
+  });
+
+  return dataresult;
+};
+
+exports.Customers = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      customerid: key.c_customerid,
+      customername: key.c_customername,
+      email: key.c_email,
+      address: key.c_address,
+      phone: key.c_phone,
+    });
+  });
+
+  return dataresult;
+};
+
+exports.Products = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      productid: key.p_productid,
+      productname: key.p_productname,
+      description: key.p_description,
+      unitprice: key.p_unitprice,
+      stockqunatity: key.p_stockqunatity,
+    });
+  });
+
+  return dataresult;
+};
