@@ -87,6 +87,10 @@ exports.Select = (sql, table, callback) => {
       if (table == "ProductHistory") {
         callback(null, model.ProductHistory(results));
       }
+
+      if (table == "MasterProductPrice") {
+        callback(null, model.MasterProductPrice(results));
+      }
     });
   } catch (error) {
     console.log(error);
@@ -233,6 +237,22 @@ exports.InsertTable = (tablename, data, callback) => {
       mpi_status,
       mpi_createdby,
       mpi_createddate) VALUES ?`;
+
+    this.Insert(sql, data, (err, result) => {
+      if (err) {
+        callback(err, null);
+      }
+      callback(null, result);
+    });
+  }
+
+  if (tablename == "master_product_price") {
+    let sql = `INSERT INTO master_product_price(
+        mpp_productid,
+        mpp_price,
+        mpp_status,
+        mpp_createdby,
+        mpp_createddate) VALUES ?`;
 
     this.Insert(sql, data, (err, result) => {
       if (err) {

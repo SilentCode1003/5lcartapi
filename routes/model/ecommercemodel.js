@@ -50,6 +50,23 @@ exports.MasterProductImage = (data) => {
   return dataresult;
 };
 
+exports.MasterProductPrice = (data) => {
+  let dataresult = [];
+
+  data.forEach((key, item) => {
+    dataresult.push({
+      priceid: key.mpp_priceid,
+      productid: key.mpp_productid,
+      price: key.mpp_price,
+      status: key.mpp_status,
+      createdby: key.mpp_createdby,
+      createddate: key.mpp_createddate,
+    });
+  });
+
+  return dataresult;
+};
+
 exports.ProductHistory = (data) => {
   let dataresult = [];
 
