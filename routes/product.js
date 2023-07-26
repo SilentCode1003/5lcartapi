@@ -182,10 +182,12 @@ router.post("/getproduct", (req, res) => {
     mp_categoryid as categoyid,
     mp_name as name,
     mp_description as description,
+    mpp_price as price,
     mp_stock as stock,
     mpi_image as image 
     from master_product as mp
     inner join master_product_image as mpi on mp_productid = mpi_productid
+    inner join master_product_price as mpp on mpp_productid = mp_productid
     where mp_productid = '${productid}'
     order by mp_productid`;
 
@@ -201,6 +203,7 @@ router.post("/getproduct", (req, res) => {
           categoyid: key.categoyid,
           name: key.name,
           description: key.description,
+          price: key.price,
           stock: key.stock,
           image: key.image,
         });
