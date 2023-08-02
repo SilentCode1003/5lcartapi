@@ -4,12 +4,17 @@ var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
 
+const mysql = require('./routes/repository/ecommerdb');
+
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
 var productRounter = require("./routes/product");
 var productimageRouter = require("./routes/productimage");
 var categoryRouter = require("./routes/category");
 var productpriceRouter = require("./routes/productprice");
+
+//Mysql Connection
+mysql.CheckConnection();
 
 var app = express();
 
