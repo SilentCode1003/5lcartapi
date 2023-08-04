@@ -3,8 +3,10 @@ var express = require("express");
 var path = require("path");
 var cookieParser = require("cookie-parser");
 var logger = require("morgan");
+const cors = require("cors");
+const bodyParser = require("body-parser");
 
-const mysql = require('./routes/repository/ecommerdb');
+const mysql = require("./routes/repository/ecommerdb");
 
 var indexRouter = require("./routes/index");
 var usersRouter = require("./routes/users");
@@ -34,6 +36,10 @@ app.use(
 );
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
+app.use(express.json({ limit: "25mb" }));
+app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
+app.use(bodyParser.json({ limit: "50mb" }));
+app.use(cors());
 
 app.use("/", indexRouter);
 app.use("/users", usersRouter);

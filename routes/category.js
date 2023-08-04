@@ -36,7 +36,7 @@ router.post("/save", (req, res) => {
   try {
     let categoryname = req.body.categoryname;
     let status = dictionary.GetValue(dictionary.ACT());
-    let createdby = "DEV42";
+    let createdby = req.session.fullname;
     let createddate = helper.GetCurrentDatetime();
     let master_category = [];
     let sql_check = `select * from master_category where mc_name='${categoryname}'`;
